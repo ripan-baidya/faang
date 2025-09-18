@@ -35,20 +35,28 @@ package array.easy;
  */
 public class RemoveDuplicatesFromSortedArray {
     public int removeDuplicates(int[] nums) {
+        // length of array
         int n = nums.length;
-        int k = 0;
-        int last = nums[0];
+
+        // if array has only one element, return 1
+        if (n == 1) return 1;
+
+        int k = 1; // index of last unique element
+        int last = nums[0]; // last unique element
 
         for (int i = 1; i < n; i ++){
+            // when current element is same as last unique element, skip it
             if (last == nums[i]){
                 continue;
             } else {
+                // place the new unique element at front of last unique element
+                // update the last unique element
                 nums[++ k] = nums[i];
                 last = nums[i];
             }
         }
 
-        return k+1;
+        return k;
     }
 
     public static void main(String[] args) {
