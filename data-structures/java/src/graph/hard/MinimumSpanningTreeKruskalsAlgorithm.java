@@ -2,6 +2,7 @@ package graph.hard;
 
 import java.util.Arrays;
 
+
 public class MinimumSpanningTreeKruskalsAlgorithm {
     int kruskalsMST(int V, int[][] edges) {
         DSU dsu = new DSU(V);
@@ -14,7 +15,7 @@ public class MinimumSpanningTreeKruskalsAlgorithm {
             int u = edge[0], v = edge[1], wt = edge[2];
 
             if (dsu.findParent(u) != dsu.findParent(v)) {
-                dsu.union(u, v);
+                dsu.unionBySize(u, v);
                 mst += wt;
             }
         }
