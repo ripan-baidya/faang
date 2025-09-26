@@ -33,37 +33,40 @@ public class CombinationSum2 {
      * Time Complexity: O(2^N * n)
      * Space Complexity: O(2^N * n)
      */
-    private void dfs(int i, int[] candidates, int target, List<Integer> cur, List<List<Integer>> ans) {
+    private void dfs(int idx, int[] candidates, int target,
+                     List<Integer> list, List<List<Integer>> ans){
         // Base case: if the remaining target is 0, we found a valid combination
         if (target == 0) {
             // add a copy of current combination
-            ans.add(new ArrayList<>(cur));
+            ans.add(new ArrayList<>(list));
             return;
         }
 
         // If we reach the end of the array or the current candidate is greater
         // than the target, stop
-        if (i == candidates.length || candidates[i] > target) {
+        if (idx == candidates.length || candidates[idx] > target) {
             return;
         }
 
         // Option 1: pick the current element
-        // add current candidate to the combination
-        cur.add(candidates[i]);
-        // move to next element
-        dfs(i + 1, candidates, target - candidates[i], cur, ans);
-        // backtrack: remove the last element added
-        cur.remove(cur.size() - 1);
+        if (candidates[idx] <= target) {
+            // add current candidate to the combination
+            list.add(candidates[idx]);
+            // move to next element
+            dfs(idx + 1, candidates, target - candidates[idx], list, ans);
+            // backtrack: remove the last element added
+            list.remove(list.size() - 1);
+        }
 
         // Option 2: skip duplicates
         // Move 'i' forward until we find a different element to avoid repeating
         // the same combination
-        while (i + 1 < candidates.length && candidates[i] == candidates[i + 1]) {
-            i += 1;
+        while (idx + 1 < candidates.length && candidates[idx] == candidates[idx + 1]) {
+            idx += 1;
         }
 
         // Skip the current element and move to the next one
-        dfs(i + 1, candidates, target, cur, ans);
+        dfs(idx + 1, candidates, target, list, ans);
     }
 
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
