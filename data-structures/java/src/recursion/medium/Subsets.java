@@ -39,7 +39,7 @@ public class Subsets {
      * Space Complexity: O(N * 2^N), s^n subsets will generate and for each subset 'n' can be the
      * length at the worst case. recursive stack space is O(n).
      */
-    public void helper(int idx, int[] nums, List<Integer> list,
+    public void dfs(int idx, int[] nums, List<Integer> list,
                        List<List<Integer>> ans) {
         // Base Case:
         if (idx == nums.length) {
@@ -48,14 +48,16 @@ public class Subsets {
         }
         // Add the current element to the list, since we are picking the element
         list.add(nums[idx]);
-        helper(idx+1, nums, list, ans); // pick
+        dfs(idx+1, nums, list, ans); // pick
         list.remove(list.size()-1); // remove picked element while backtracking
-        helper(idx+1, nums, list, ans); // non-pick
+        dfs(idx+1, nums, list, ans); // non-pick
     }
 
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
-        helper(0, nums, new ArrayList<>(), ans);
+
+        // parameters: index, nums, list, ans
+        dfs(0, nums, new ArrayList<>(), ans);
         return ans;
     }
 
