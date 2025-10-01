@@ -34,9 +34,14 @@ package array.easy;
  * 2 respectively. It does not matter what you leave beyond the returned k (hence they are underscores).
  */
 public class RemoveDuplicatesFromSortedArray {
+    /**
+     * optimal solution:
+     * we know first element is always unique, we use that property here, we skip where current element
+     * is same as last unique element, else we place the new unique element at front of last unique element
+     * and update the last unique element
+     */
     public int removeDuplicates(int[] nums) {
-        // length of array
-        int n = nums.length;
+        int n = nums.length; // array length
 
         // if array has only one element, return 1
         if (n == 1) return 1;
