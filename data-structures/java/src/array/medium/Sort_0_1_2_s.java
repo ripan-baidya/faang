@@ -1,15 +1,13 @@
 package array.medium;
 
 import java.util.Arrays;
+
 /**
  * @author Ripan Baidya
  * @date 31-07-2025
  *
- * Given an array nums with n objects colored red, white, or blue, sort them in-place so that
- * objects of the same color are adjacent, with the colors in the order red, white, and blue.
- * We will use the integers 0, 1, and 2 to represent the color red, white, and blue.
- * You must solve this problem without using the library's sort function.
- * Could you come up with a one-pass algorithm using only constant extra space?
+ * Given an array arr[] containing only 0s, 1s, and 2s. Sort the array in ascending order.
+ * Note: You need to solve this problem without utilizing the built-in sort function.
  *
  * Example :
  * Input: nums = [2,0,2,1,1,0]
@@ -17,14 +15,26 @@ import java.util.Arrays;
  */
 
 /**
- * // using built in function
+ * using built in function
+ *
+ * Time Complexity: O(n log n)
+ * Space Complexity: O(1)
+ */
+/**
  * public void sortColors(int[] nums) {
  *         Arrays.sort(nums);
  * }
  */
 
 /**
- * // better solution
+ * Better Approach:
+ * We will count the occurrence of each color in the array and then replace the array elements with
+ * the three different colors respectively 0, 1 and 2.
+ *
+ * Time Complexity: O(n)
+ * Space Complexity: O(1)
+ */
+/**
  * public void sortColors(int[] nums) {
  *         int n = nums.length;
  *
@@ -56,7 +66,15 @@ import java.util.Arrays;
  *     }
  */
 
-// optimal solution
+/**
+ * optimal solution
+ * The idea is to sort the array of size n using three pointers: low = 0, mid = 0 and high = n - 1 such that
+ * the array is divided into 4 parts -
+ *      1. arr[0 .. low - 1] → All 0s
+ *      2. arr[low .. mid - 1] → All 1s
+ *      3. arr[mid .. high] → Unprocessed elements (unknown)
+ *      4. arr[high + 1 .. n - 1] → All 2s
+ */
 public class Sort_0_1_2_s {
     // function to swap two numbers
     private void swap(int[] nums, int a, int b){
@@ -67,18 +85,29 @@ public class Sort_0_1_2_s {
 
     public void sortColors(int[] nums) {
         int n = nums.length;
+
+        // low: boundary for 0s
+        // mid: current element being checked
+        // high: boundary for 2s
         int low = 0, mid = 0, high = n-1;
 
+        // process elements until mid crosses high
         while (mid <= high){
+            // current is 0: swap with lo and move both
+            // pointers forward
             if (nums[mid] == 0){
                 swap(nums, low, mid);
                 low ++;
                 mid ++;
             }
             else if (nums[mid] == 1){
+                // current is 1: it's already in correct position
                 mid ++;
             }
             else {
+                // current is 2: swap with hi and move hi backward
+                // do not increment mid, as swapped value needs
+                // to be re-checked
                 swap(nums, mid, high);
                 high --;
             }
