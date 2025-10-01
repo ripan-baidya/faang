@@ -15,6 +15,13 @@ package array.easy;
  * the output is 2
  */
 public class LinearSearch {
+    /**
+     * We will Iterate through each element of array and check if it is equal to target element or not.
+     * if element is found return its index else return -1.
+     *
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     */
     public int search(int[] arr, int x) {
         // length of array
         int n = arr.length;
