@@ -7,6 +7,7 @@ package recursion.easy;
  * Given a positive number n. Find the sum of all the digits of n.
  *
  * Examples:
+ *
  * Input: n = 687
  * Output: 21
  * Explanation: Sum of 687's digits: 6 + 8 + 7 = 21
@@ -20,15 +21,15 @@ public class SumOfDigits {
      * Space Complexity: O(log₁₀ n) - Recursion stack space proportional to number of digits
      */
     void sumHelper(int n, int[] sum) {
-        if (n == 0) return;
-        sum[0] += n%10;
-        sumHelper(n/10, sum);
+        if (n == 0) return; // base case
+        sum[0] += n%10; // add last digit to sum
+        sumHelper(n/10, sum); // recursive call
     }
 
     int sumOfDigits(int n) {
-        int[] sum = new int[1];
-        sumHelper(n, sum);
-        return sum[0];
+        int[] sum = new int[1]; // result
+        sumHelper(n, sum); // helper method to calculate sum
+        return sum[0]; // return result
     }
 
     static void main() {
