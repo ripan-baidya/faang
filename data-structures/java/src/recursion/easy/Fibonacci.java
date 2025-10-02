@@ -1,4 +1,4 @@
-package recursion.basics;
+package recursion.easy;
 
 /**
  * @author Ripan Baidya
@@ -24,9 +24,9 @@ public class Fibonacci {
 
         return nthFibonacciNumber(n-1) + nthFibonacciNumber(n-2);
     }
+
     static void main() {
         var obj = new Fibonacci();
-
         int n = 8;
         int nthFibonacciResult = obj.nthFibonacciNumber(n);
 
