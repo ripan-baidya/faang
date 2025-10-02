@@ -13,10 +13,27 @@ package recursion.easy;
  * Explanation: We have to print numbers from 5 to 1.
  */
 public class PrintNTill1 {
+    /**
+     * Iterative Approach:
+     * Here we are using for loop to print numbers from n till 1.
+     *
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     */
+    /**
+    void printNTill1(int n) {
+        for (int i = n; i >= 1; i --) {
+            System.out.print(i + " ");
+        }
+    }
+
+    */
 
     /**
      * Here, we will print the number from n to 1 using recursion.
-     * time: O(n), space: O(n)
+     *
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
      */
     void printNTill1(int n) {
         if (n == 0) return;
