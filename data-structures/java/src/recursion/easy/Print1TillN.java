@@ -13,10 +13,25 @@ package recursion.easy;
  * Explanation: We have to print numbers from 1 to 5.
  */
 public class Print1TillN {
+    /**
+     * Iterative Approach:
+     * Here we are using for loop to print numbers from 1 till n.
+     *
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     */
+    void print1TillN(int n) {
+        for (int i = 1; i <= n; i ++) {
+            System.out.print(i + " ");
+        }
+    }
 
     /**
+     * Recursive Approach:
      * Here, we will print the number from 1 to n using recursion.
-     * time: O(n), space: O(n)
+     *
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
      */
     void printTillN(int n) {
         if (n == 0) return;
@@ -31,6 +46,7 @@ public class Print1TillN {
         var obj = new Print1TillN();
 
         int n = 5;
-        obj.printTillN(n);
+        obj.printTillN(n); // recursive
+        obj.print1TillN(n); // iterative
     }
 }
