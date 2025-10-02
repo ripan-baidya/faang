@@ -24,7 +24,7 @@ public class ReverseString {
     }
 
     public String reverseString(String s) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder(); // result
         revStrHelper(s, s.length(), sb);
         return sb.toString();
     }
