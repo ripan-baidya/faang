@@ -1,29 +1,36 @@
 package array.hard;
 
+import java.util.Arrays;
+
 /**
  * @author Ripan Baidya
- * @date 31-07-2025
+ * @date 02-10-2025
  *
- * You are given two integer arrays nums1 and nums2, sorted in non-decreasing order,
- * and two integers m and n, representing the number of elements in nums1 and nums2
- * respectively. Merge nums1 and nums2 into a single array sorted in non-decreasing
- * order.
- *
- * The final sorted array should not be returned by the function, but instead be stored
- * inside the array nums1. To accommodate this, nums1 has a length of m + n, where the
- * first m elements denote the elements that should be merged, and the last n elements
- * are set to 0 and should be ignored. nums2 has a length of n.
+ * Given two sorted arrays a[] and b[] of size n and m respectively, the task is to merge them in sorted order
+ * without using any extra space. Modify a[] so that it contains the first n elements and modify b[] so that it
+ * contains the last m elements.
  *
  * Example:
- * Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
- * Output: [1,2,2,3,5,6]
- * Explanation: The arrays we are merging are [1,2,3] and [2,5,6].
- * The result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1.
+ *
+ * Input: a[] = [2, 4, 7, 10], b[] = [2, 3]
+ * Output: a[] = [2, 2, 3, 4], b[] = [7, 10]
+ * Explanation: After merging the two non-decreasing arrays, we get, [2, 2, 3, 4, 7, 10]
  */
 public class MergeSortedArrayWithoutExtraSpace {
+    /**
+     * Naive Approach 1: Using extra space
+     * We use the idea of merge sort to merge two sorted arrays. We create a new array and merge the two arrays
+     * into the new array. Then we copy the new array back to the first array.
+     *
+     * Time Complexity: O(n*log n)
+     * Space Complexity: O(n)
+     */
     public void merge(int[] nums1, int m, int[] nums2, int n) {
+        // resultant merged array
         int[] merged = new int[m + n];
+        // i and j are the pointers for nums1 and nums2
         int i = 0, j = 0;
+        // the pointer for merged array
         int index = 0;
 
         // Merge the arrays
@@ -51,7 +58,80 @@ public class MergeSortedArrayWithoutExtraSpace {
         }
     }
 
-    public static void main(String[] args) {
+    /**
+     * Naive Approach 2: Using Insert of Insertion Sort
+     * We’re going to take b[] and reverse it from the back. Then, we’ll compare each element in b[] with
+     * the last element in a[]. If b[i] is smaller than the last element of a[], we’ll swap b[i] with the
+     * last element of a[] and use the insertion sort algorithm to find the right spot for b[i] in a[].
+     *
+     * Now, how do we keep a[] sorted? Well, every time we add an element from b[] to a[], we use the
+     * insertion sort algorithm to find the correct index.
+     * And how do we keep b[] sorted? That’s because we start from the back of b[] and only add elements
+     * when the current element in b[] is smaller than the last element in a[].
+     *
+     * Time Complexity: O(n * m), where n is the length of a[] and m is the length of b[]
+     * Space Complexity: O(1)
+     */
+    /**
+    public void mergeArrays(int[] a, int[] b) {
+        // Traverse b[] starting from the last element
+        for (int i = b.length - 1; i >= 0; i --) {
+            // If b[i] is smaller than the largest element of a[]
+            if (a[a.length - 1] > b[i]) {
+                // Place b[i] in the correct position in a[],
+                // and move last element of a[] to b[]
+                int last = a[a.length - 1];
+                int j = a.length - 2;
+                while (j >= 0 && a[j] > b[i]) {
+                    a[j + 1] = a[j];
+                    j--;
+                }
+                a[j + 1] = b[i];
+                b[i] = last;
+            }
+        }
+    }
+
+    */
+
+    /**
+     * Better Approach: Using Swap & Sort
+     * We can actually use the same approach without having to find the pivot index. All we need to do is swap
+     * the rightmost element in a[] with the leftmost element in b[], then the second rightmost element in a[]
+     * with the second leftmost element in b[], and so on. This process will keep going until the selected
+     * element from a[] is bigger than the selected element from b[].
+     *
+     * Once we reach the pivot index, this condition automatically fails, and we stop here. After that, we just
+     * sort both arrays to keep the order.
+     *
+     * Time Complexity: O((m+n) + m*log(m) + n*log(n)), where n and m are sizes of a[] and b[] respectively.
+     * Space Complexity: O(1)
+     */
+    private void mergeArrays(int[] a, int[] b) {
+        int i = a.length - 1, j = 0;
+
+        // Swap smaller elements from b[] with
+        // larger elements from a[]
+        while (i >= 0 && j < b.length) {
+            if (a[i] < b[j]) {
+                i--;
+            } else {
+                int temp = b[j];
+                b[j] = a[i];
+                a[i] = temp;
+                i--;
+                j++;
+            }
+        }
+
+        // Sort both arrays
+        Arrays.sort(a);
+        Arrays.sort(b);
+    }
+
+
+
+    static void main(String[] args) {
         MergeSortedArrayWithoutExtraSpace obj = new MergeSortedArrayWithoutExtraSpace();
 
         int[] nums1 = {1, 2, 3, 0, 0, 0};
