@@ -13,22 +13,20 @@ package recursion.easy;
  */
 public class SumOfArray {
     /**
-     * To solve this problem we will use a helper function, which will take
-     * the array and its size. We will stop whenever there is a single element
-     * in the array. And while backtracking, we will add the 'n-1'-th element
-     * to get the total sum of the array.
-     * time: O(n), space: O(n)
+     * To solve this problem we will use a helper function, which will take the array and its size.
+     * We will stop whenever there is a single element in the array. And while backtracking, we will
+     * add the 'n-1'-th element to get the total sum of the array.
+     *
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
      */
     int arySumHelper(int[] arr, int n) {
-        // Base Case
-        if (n == 1) return arr[0];
-
+        if (n == 1) return arr[0]; // base case
         return arySumHelper(arr, n-1) + arr[n-1];
     }
 
-    int arraySum(int arr[]) {
-        int n = arr.length;
-        return arySumHelper(arr, n);
+    int arraySum(int[] arr) {
+        return arySumHelper(arr, arr.length);
     }
 
     static void main() {
