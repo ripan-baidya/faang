@@ -1,4 +1,4 @@
-package recursion.basics;
+package recursion.easy;
 
 /**
  * @author Ripan Baidya
@@ -11,9 +11,13 @@ package recursion.basics;
  */
 public class SumOfNaturalNumbers {
     /**
-     * Here, I will solve the problem using iterative approach, and later we will solve the
-     * exact same problem using recursion.
-     * Time: O(n), Space: O(1)
+     * Iterative approach:
+     * We can use the formula for the sum of n natural numbers: n * (n + 1) / 2, in a single step,
+     * otherwise, we can also use loop for iterating from 1 to n and adding the current value to
+     * the result.
+     *
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
      */
     int fun(int n) {
         int sumN = 0;
