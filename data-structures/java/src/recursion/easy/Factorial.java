@@ -1,4 +1,4 @@
-package recursion.basics;
+package recursion.easy;
 
 /**
  * @author Ripan Baidya
@@ -11,9 +11,11 @@ package recursion.basics;
  */
 public class Factorial {
     /**
-     * Here, I will solve the problem using iterative approach, and later we will solve the
-     * exact same problem using recursion.
-     * Time: O(n), Space: O(1)
+     * Iterative Approach:
+     * We can use a loop to iterate from 1 to n and multiply the current value to the result.
+     *
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
      */
     int fact(int n) {
         int fact = 1;
@@ -24,8 +26,12 @@ public class Factorial {
     }
 
     /**
-     * Now, Solving the factorial of N using recursion.
-     * time: O(n), space: O(n) for recursive stack space
+     * Recursive Approach:
+     * We can use the same approach as the iterative approach, but instead of using a loop, we can use
+     * recursion to calculate the factorial.
+     *
+     * Time Complexity: O(n)
+     * Space Complexity: O(n) for recursive stack space
      */
     int fact2(int n) {
         // base case
