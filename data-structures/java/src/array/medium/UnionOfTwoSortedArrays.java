@@ -55,6 +55,8 @@ public class UnionOfTwoSortedArrays {
     /**
      * Expected Approach: Using Merge Step of Merge Sort
      *
+     * Time Complexity: O(n + m)
+     * Space Complexity: O(n + m), if we consider the space to store the result, otherwise O(1)
      */
     public ArrayList<Integer> findUnion(int[] a, int[] b) {
         ArrayList<Integer> res = new ArrayList<>();
