@@ -18,16 +18,22 @@ public class LengthString {
      * length of the string.
      * time: O(n), space: O(n)
      */
-    private static void lenStrHelper(String s, int n, int[] len) {
-        // Base
-        if (n == 0) return;
-        // Count the length of String
-        len[0] ++;
+    private void lenStrHelper(String s, int n, int[] len) {
+        if (n == 0) return; // base case
+        len[0] ++; // count length
         lenStrHelper(s, n-1, len);
     }
-    public static int lengthString(String s) {
+    public int lengthString(String s) {
         int[] len = new int[1];
         lenStrHelper(s, s.length(), len);
         return len[0];
+    }
+
+    static void main() {
+        var obj = new LengthString();
+        String s = "helloWorld";
+        int length = obj.lengthString(s);
+
+        System.out.println(length);
     }
 }
