@@ -132,7 +132,7 @@ public class MergeSortedArrayWithoutExtraSpace {
 
 
     static void main(String[] args) {
-        MergeSortedArrayWithoutExtraSpace obj = new MergeSortedArrayWithoutExtraSpace();
+        var obj = new MergeSortedArrayWithoutExtraSpace();
 
         int[] nums1 = {1, 2, 3, 0, 0, 0};
         int[] nums2 = {2, 5, 6};
