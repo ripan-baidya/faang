@@ -13,22 +13,32 @@ import java.util.List;
  * Example:
  * Input: n = 4, k = 2
  * Output: [[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]
- * Explanation: There are 4 choose 2 = 6 total combinations.
- * Note that combinations are unordered, i.e., [1,2] and [2,1] are considered to be the same combination.
  */
 public class Combinations {
-    private void dfs(int start, int n, int k,
-                     List<Integer> list, List<List<Integer>> ans) {
+    /**
+     * Approach: Backtracking
+     * This problem can be solved using backtracking. The idea is to start from each element and try to form
+     * all possible combinations of size 'k' by selecting one element from the remaining elements. We keep
+     * track of the current combination by adding elements to the 'list' and backtrack when the size of the list
+     * reaches 'k'. The base case is when the size of the list is equal to 'k', we add a copy of the list to
+     * the answer.
+     *
+     * Time Complexity: O(n * 2ⁿ)
+     * Space Complexity: O(n)
+     */
+    private void dfs(int start, int n, int k, List<Integer> list,
+                     List<List<Integer>> ans) {
+        // Base Case
         if (list.size() == k) {
             ans.add(new ArrayList<>(list));
             return;
         }
 
-        // iterate: start ... n
+        // for each element we will start iterating from start to n
         for (int i = start; i <= n; i ++) {
             list.add(i);
-            dfs(i+1, n, k, list, ans);
-            list.remove(list.size()-1);
+            dfs(i+1, n, k, list, ans); // recursive call
+            list.removeLast(); // remove it while backtracking
         }
     }
     public List<List<Integer>> combine(int n, int k) {
@@ -39,7 +49,6 @@ public class Combinations {
 
     static void main() {
         var obj = new Combinations();
-
         int n = 4, k = 2;
         List<List<Integer>> combinations = obj.combine(n, k);
 
