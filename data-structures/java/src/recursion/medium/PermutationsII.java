@@ -14,9 +14,10 @@ import java.util.*;
  * Output: [[1,1,2], [1,2,1], [2,1,1]]
  */
 public class PermutationsII {
-    // Pre-requisite: Permutations
+    // Pre-requisite: ******** Permutations ********
+
     /**
-     * Approach: Backtracking
+     * Approach 1: Backtracking
      * We did the same as we did in Permutations, but with a small modification. We sort the array first and skip
      * the choice if it is same as previous and previous is not used. This is to avoid duplicates.
      *
@@ -24,9 +25,9 @@ public class PermutationsII {
      * requires O(n) time to build.
      * Space Complexity: O(n), where n is the length of the input array. The space is used for the recursion stack
      */
+    /*
     private void backtrack(int[] nums, List<Integer> perm, List<List<Integer>> result, boolean[] used) {
-        // base case
-        // when we reach the end of the array, we add current permutation to the result
+        // Base case
         if (perm.size() == nums.length) {
             result.add(new ArrayList<>(perm));
             return;
@@ -34,7 +35,9 @@ public class PermutationsII {
 
         // explore all possible choices
         for (int i = 0; i < nums.length; i ++) {
-            // since we sort the array, we skip the choice if it is same as previous and previous is not used
+            // we skip the choice if it is same as previous and previous is not used
+            // becuase, if previous were used, it means we have already considered it
+            // and we could add the current element to the permutation.
             if (i > 0 && nums[i] == nums[i-1] && !used[i-1]) continue;
 
             // if the current element is not used, we use it
@@ -53,6 +56,52 @@ public class PermutationsII {
         boolean[] used = new boolean[nums.length];
 
         backtrack(nums, new ArrayList<>(), result, used);
+        return result;
+    }
+    */
+
+    /**
+     * Approach 2: Using HashMap
+     * Use a HashMap to store element frequencies and apply DFS with backtracking. At each step, pick an element with
+     * a positive count, add it to the current permutation, decrement its count, recurse, then backtrack by restoring
+     * the count. This ensures all unique permutations are generated without duplicates.
+     *
+     * Time complexity: O(n!∗n)
+     * Space complexity: O(n!∗n) for the output list.
+     */
+    private void dfs(int len, Map<Integer, Integer> map, List<Integer> perms,
+                     List<List<Integer>> result) {
+        // Base Case
+        if (perms.size() == len) {
+            result.add(new ArrayList<>(perms));
+            return;
+        }
+
+        for (int key : map.keySet()) {
+            int count = map.get(key); // occurrence of the element
+            if (count == 0) continue;
+            else {
+                map.put(key, map.get(key)-1); // reduce count
+                perms.add(key); // add current element to the permutation
+                dfs(len, map, perms, result); // recursive call
+
+                // backtrack
+                perms.remove(perms.size()-1); // remove current element
+                map.put(key, map.get(key)+1); // increase count
+            }
+        }
+    }
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        Map<Integer, Integer> map = new HashMap<>();
+
+        // build frequency map for all elements
+        for (int num : nums) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
+        // start recursive generation
+        dfs(nums.length, map, new ArrayList<>(), result);
         return result;
     }
 
