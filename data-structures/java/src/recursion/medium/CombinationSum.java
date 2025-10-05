@@ -34,10 +34,8 @@ public class CombinationSum {
      * the target), we add it to the 'ans' list. We use backtracking to remove the last element from the 'path'
      * and explore other possibilities when we exceed the target or reach the end of the candidates array.
      *
-     * Time Complexity: O(2^n * k), where n is the length of the candidates array and k is the target. This is
-     * because we need to explore all possible combinations.
-     * Space Complexity: O(target/min(candidates)) + O(output size), where output size is the number of combinations
-     * that sum up to the target.
+     * Time Complexity: O(2 t/m)
+     * Space Complexity: O(t/m), where t is the target and m is the minimum value in the candidates array.
      */
     private void dfs(int idx, int[] candidates, int target, int currentSum, List<Integer> path,
                      List<List<Integer>> ans) {
