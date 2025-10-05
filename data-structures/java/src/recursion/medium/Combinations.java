@@ -38,11 +38,13 @@ public class Combinations {
         for (int i = start; i <= n; i ++) {
             list.add(i);
             dfs(i+1, n, k, list, ans); // recursive call
-            list.removeLast(); // remove it while backtracking
+            list.removeLast(); // backtrack
         }
     }
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> ans = new ArrayList<>();
+
+        // parameters: start, n, k, list, ans
         dfs(1, n, k, new ArrayList<>(), ans);
         return ans;
     }
