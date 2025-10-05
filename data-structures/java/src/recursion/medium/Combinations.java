@@ -23,8 +23,8 @@ public class Combinations {
      * reaches 'k'. The base case is when the size of the list is equal to 'k', we add a copy of the list to
      * the answer.
      *
-     * Time Complexity: O(n * 2ⁿ)
-     * Space Complexity: O(n)
+     * Time Complexity: O(k * n!/(n−k)! * k!)
+     * Space Complexity: O(k * n!/(n−k)! * k!), for output query
      */
     private void dfs(int start, int n, int k, List<Integer> list,
                      List<List<Integer>> ans) {
