@@ -23,7 +23,7 @@ public class PermutationsII {
      *
      * Time Complexity: O(n * n!),  n is the length of the array. There are n! permutations, and each permutation
      * requires O(n) time to build.
-     * Space Complexity: O(n), where n is the length of the input array. The space is used for the recursion stack
+     * Space Complexity: O(n * n!), where n is the length of the input array. The space is used for the recursion stack
      */
     /*
     private void backtrack(int[] nums, List<Integer> perm, List<List<Integer>> result, boolean[] used) {
@@ -50,7 +50,7 @@ public class PermutationsII {
             }
         }
     }
-    public List<List<Integer>> permuteUnique(int[] nums) {
+    public List<List<Integer>> permuteUnique2(int[] nums) {
         Arrays.sort(nums); // make sure sort the arary
         List<List<Integer>> result = new ArrayList<>();
         boolean[] used = new boolean[nums.length];
@@ -60,14 +60,15 @@ public class PermutationsII {
     }
     */
 
+
     /**
      * Approach 2: Using HashMap
      * Use a HashMap to store element frequencies and apply DFS with backtracking. At each step, pick an element with
      * a positive count, add it to the current permutation, decrement its count, recurse, then backtrack by restoring
      * the count. This ensures all unique permutations are generated without duplicates.
      *
-     * Time complexity: O(n!∗n)
-     * Space complexity: O(n!∗n) for the output list.
+     * Time complexity: O(n! * n)
+     * Space complexity: O(n! * n) for the output list.
      */
     private void dfs(int len, Map<Integer, Integer> map, List<Integer> perms,
                      List<List<Integer>> result) {
@@ -100,7 +101,7 @@ public class PermutationsII {
             map.put(num, map.getOrDefault(num, 0) + 1);
         }
 
-        // start recursive generation
+        // parameters: len, map, perms, result
         dfs(nums.length, map, new ArrayList<>(), result);
         return result;
     }
