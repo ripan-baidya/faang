@@ -32,21 +32,20 @@ public class CombinationSumII {
      */
     private void dfs(int idx, int[] candidates, int target, int currentSum,
                      List<Integer> path, List<List<Integer>> ans){
-        // Base Case 1: Whenever we found target we would add it to the 'ans' list and return.
+        // Base Case:
         if (currentSum == target) {
             ans.add(new ArrayList<>(path));
             return;
         }
-        // Base Case 2: When we reach the length or currentSum exceeds target we will return
+        // Base Case 2:
         if (idx == candidates.length || currentSum > target) return;
 
 
         path.add(candidates[idx]);
         dfs(idx, candidates, target, target+candidates[idx], path, ans);
-        path.removeLast(); // remove while backtrack
+        path.removeLast(); // backtrack
 
-        // Option 2: skip duplicates
-        // Move 'i' forward until we find a different element to avoid repeating the same combination
+        // skip duplicates
         while (idx + 1 < candidates.length && candidates[idx] == candidates[idx + 1]) idx ++;
 
         // Skip the current element and move to the next one
