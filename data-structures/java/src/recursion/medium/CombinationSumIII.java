@@ -28,27 +28,27 @@ public class CombinationSumIII {
      * Time Complexity: O(C(9, k) × k)
      * Space Complexity: O(k)
      */
-    private void dfs(int start, int end, int k, int n, int curSum,
+    private void dfs(int start, int end, int k, int n, int pathSum,
                      List<Integer> path, List<List<Integer>> ans) {
         // base case: Combination found
-        if (curSum == n && path.size() == k) {
+        if (pathSum == n && path.size() == k) {
             ans.add(new ArrayList<>(path));
             return;
         }
 
-        // base case: exceeds the target or size of the path exceeds k
-        if (path.size() > k || curSum > n) return;
-
         for (int i = start; i <= end; i ++) {
+            // base case: exceeds the target or size of the path exceeds k
+            if (path.size() > k || pathSum > n) return;
+
             path.add(i);
-            dfs(i+1, end, k, n, curSum+i, path, ans);
+            dfs(i+1, end, k, n, pathSum+i, path, ans);
             path.remove(path.size()-1);
         }
     }
     public List<List<Integer>> combinationSum3(int k, int n) {
         List<List<Integer>> ans = new ArrayList<>();
 
-        // start, end, k, n, curSum, path, ans
+        // start, end, k, n, pathSum, path, ans
         dfs(1, 9, k, n, 0, new ArrayList<>(), ans);
         return ans;
     }
