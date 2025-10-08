@@ -41,46 +41,50 @@ public class RestoreIPAddresses {
      * Time Complexity: O(3^4) = O(1), Bounded by a constant factor due to the problem constraints.
      * Space Complexity: O(1), Constant space for the call stack and result storage.
      */
-    // Check if the segment is valid
-    private static boolean isValid(String segment) {
-        // No leading zeros allowed
-        if (segment.length() > 1 && segment.charAt(0) == '0') {
-            return false;
+
+    // helper function to check whether the segment is valid
+    private boolean isValid(String s) {
+        if (s.length() > 1 && s.charAt(0) == '0'){
+            return false; // leading zero is not allowed
         }
-        int value = Integer.parseInt(segment);
-        // segment value should be within 0-255
-        return value >= 0 && value <= 255;
+        int val = Integer.parseInt(s);
+        return val >= 0 && val <= 255; // 0-255 (inclusive)
     }
 
-    private static void backtrack(int index, int dots, String s, String currentIP, List<String> result) {
-        // If we have placed 4 dots and used the entire string, we have a valid IP
-        if (dots == 4 && index == s.length()) {
-            result.add(currentIP.substring(0, currentIP.length() - 1)); // Remove the last dot
+    private void dfs(int idx, int dots, String s, StringBuilder curIp, List<String> ans) {
+        // base case 1: if we have 4 segments and reached the end of the string
+        if (dots == 4 && idx == s.length()) {
+            // make sure remove the last dot while adding to the answer
+            ans.add(curIp.substring(0, curIp.length()-1).toString());
             return;
         }
-        // If we exceed 4 segments or use all characters, return
-        if (dots > 4 || index >= s.length()) {
-            return;
-        }
-        // Try placing a dot after 1, 2, or 3 digits
-        for (int len = index; len < Math.min(index+3, s.length()); len++) {
-            String segment = s.substring(index, len+1);
 
-            // Check if the segment is valid
+        // base case 2: if we have 4 segments but not reached the end of the string
+        if (dots == 4) return;
+
+        for (int j = idx; j < s.length(); j ++) {
+            String segment = s.substring(idx, j+1);
+
+            // if the segment is not valid, break
+            if (!isValid(segment)) break;
+
+            int lenBeforeAppend = curIp.length();
             if (isValid(segment)) {
-                // Recur with the new segment added to the current IP
-                backtrack(len+1, dots + 1, s, currentIP + segment + ".", result);
+                curIp.append(segment).append(".");
+                dfs(j+1, dots+1, s, curIp, ans);
+                curIp.delete(lenBeforeAppend, curIp.length());
             }
         }
     }
-    // Main function to restore IP addresses
     public List<String> restoreIpAddresses(String s) {
-        List<String> result = new ArrayList<>();
+        List<String> ans = new ArrayList<>();
+        if (s.length() < 4 || s.length() > 12) return ans;
 
-        // parameters: index, dots, s, currentIP, result
-        backtrack(0, 0, s, "",  result);
-        return result;
+        // @params: index, dots, string, current IP, answer
+        dfs(0, 0, s, new StringBuilder(), ans);
+        return ans;
     }
+
 
     static void main(String[] args) {
         var obj = new RestoreIPAddresses();
