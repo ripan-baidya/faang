@@ -24,20 +24,34 @@ package recursion.easy;
  * 0 + 1 + 3 + 2 = 6
  */
 public class SumOfAllSubsetXORTotals {
-    private void dfs(int idx, int[] nums, int[] totalSum, int curr) {
-        // Base Case
+
+    /**
+     * Approach 1: ***** Backtracking *****
+     * we use recursion to calculate the XOR sum while forming subsets. At each step, we choose to either include
+     * or exclude the current element and pass the updated XOR value accordingly. This way, we compute the  total
+     * XOR of all subsets directly during recursion.The sum of both choices (with and without the current element)
+     * is returned to build the final answer efficiently.
+     *
+     * Time Complexity: O(2ⁿ), where n is the length of the input array nums.
+     * Space Complexity: O(n)
+     */
+
+    // Entry point
+    public int subsetXORSum(int[] nums) {
+        int[] ans = new int[1]; // ans
+        dfs(0, 0, nums, ans);
+        return ans[0];
+    }
+
+    // helper function to calculate the XOR sum while forming subsets
+    private void dfs(int idx, int curXor, int[] nums, int[] totalSum) {
         if (idx == nums.length) {
-            totalSum[0] += curr;
+            totalSum[0] += curXor;
             return;
         }
 
-        dfs(idx+1, nums, totalSum, curr^nums[idx]); // pick
-        dfs(idx+1, nums, totalSum, curr); // non pick
-    }
-    public int subsetXORSum(int[] nums) {
-        int[] sum = new int[1];
-        dfs(0, nums, sum, 0);
-        return sum[0];
+        dfs(idx+1, curXor^nums[idx], nums, totalSum); // pick
+        dfs(idx+1, curXor, nums, totalSum); // non-pick
     }
 
     static void main() {
