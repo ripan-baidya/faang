@@ -43,9 +43,9 @@ public class SumOfAllSubsetXORTotals {
     static void main() {
         var obj = new SumOfAllSubsetXORTotals();
         
-        int[] nums = {1, 3};
-        int sum = obj.subsetXORSum(nums);
+        int[] nums = {1, 2, 3};
+        int ans = obj.subsetXORSum(nums);
 
-        System.out.println("sum = " + sum);
+        System.out.println(ans); // 12
     }
 }
