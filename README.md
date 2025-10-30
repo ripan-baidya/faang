@@ -1,8 +1,8 @@
-![faang](https://i.pinimg.com/1200x/29/5e/42/295e42c377ee768dbc126443bcf4bd97.jpg)
+<img style="border-radius: 10px" src="https://i.pinimg.com/1200x/29/5e/42/295e42c377ee768dbc126443bcf4bd97.jpg">
 
-# 🚀 Destination FAANG
+# faang
 
-Welcome to **Destination FAANG** – a collection of Data Structures, Algorithms, and Problem-Solving practice code that I’ve been curating while preparing for **FAANG interviews**.  
+Welcome to **faang**, i have created this repository to showcase my progress of preparing for **FAANG interviews**. you will find all top quality interview problems 
 
 This repository serves as a structured hub for:
 - 📚 Implementations of classic **DSA problems**
