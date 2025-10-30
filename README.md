@@ -1,64 +1,54 @@
-<img style="border-radius: 10px" src="https://i.pinimg.com/1200x/29/5e/42/295e42c377ee768dbc126443bcf4bd97.jpg">
+## DSA Preparation
 
-# faang
+If you're preparing for **DSA or technical interview rounds at big tech companies (FAANG, etc.)**, this repository can be a great resource to **boost your preparation**.
 
-Welcome to **faang**, i have created this repository to showcase my progress of preparing for **FAANG interviews**. you will find all top quality interview problems 
+It contains a well-organized collection of **data structures, algorithms, and problem-solving practice code** that I’ve implemented during my preparation journey.
 
-This repository serves as a structured hub for:
-- 📚 Implementations of classic **DSA problems**
-- 🧩 Solutions to **algorithmic challenges**
-- 🏗️ Practice code for **systematic interview prep**
-- 📝 Notes and patterns for quick revision
+### What You’ll Find Here
 
----
+* Implementations of **classic DSA problems**
+* **In-depth explanations** for each algorithm
+* **Popular SDE Sheets** (Striver, Love Babbar, Amazon, etc.)
+* **Notes and patterns** for quick revision
+* **Multi-language support** — Java, C++, and Python
 
-## 🎯 Goal
-The goal of this repository is to:
-- Strengthen my **problem-solving skills**
-- Build a **solid foundation** in DSA
-- Share resources with others on the same journey towards **FAANG interviews**
 
----
+### Tech Stack
 
-## 🛠️ Tech Stack
-- **Language**: Java / C++ / Python (as per problem)
-- **IDE**: IntelliJ IDEA / VS Code
-- **Version Control**: Git & GitHub
+* **Languages:** Java / C++ / Python
+* **IDE:** IntelliJ IDEA / VS Code
+* **Version Control:** Git & GitHub
 
----
 
-## 🤝 Contributing
-Contributions are welcome! If you'd like to add a new problem, improve existing content, or fix errors:
+### Contributing
 
-1. Fork the repository  
-2. Create a feature branch:  
-    ```bash
-    git checkout -b feature/your-feature-name
-    ```
+Contributions are welcome!
+If you’d like to add a new problem, improve existing content, or fix errors:
 
-3. Commit your changes:
+1. **Fork** the repository
+2. **Create** a feature branch:
 
    ```bash
-   git commit -m 'Add some feature'
+   git checkout -b feature/your-feature-name
    ```
-4. Push to the branch:
+3. **Commit** your changes:
+
+   ```bash
+   git commit -m "Add some feature"
+   ```
+4. **Push** to your branch:
 
    ```bash
    git push origin feature/your-feature-name
    ```
-5. Submit a pull request
+5. **Submit** a pull request
 
-👉 Please make sure to update **README files** and documentation as appropriate.
+> 📝 Please make sure to update relevant **README files** and documentation when contributing.
 
----
 
-## ⭐ Support
 
-If you find this resource helpful, please **give it a star ⭐** and share it with others!
+###  Support
 
-Let’s keep learning and growing together 💡
+If you find this resource helpful, please **give it a star** and share it with others!
 
-```
-
-Do you want me to also add **badges** (like GitHub stars, forks, last commit, language stats) at the top for a more professional touch?
-```
+Let’s keep **learning, practicing, and growing together** 💡
