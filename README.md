@@ -1,4 +1,4 @@
-## DSA Preparation
+## Data Structues and Algorithms
 
 If you're preparing for **DSA or technical interview rounds at big tech companies (FAANG, etc.)**, this repository can be a great resource to **boost your preparation**.
 
@@ -42,13 +42,3 @@ If you’d like to add a new problem, improve existing content, or fix errors:
    git push origin feature/your-feature-name
    ```
 5. **Submit** a pull request
-
-> 📝 Please make sure to update relevant **README files** and documentation when contributing.
-
-
-
-###  Support
-
-If you find this resource helpful, please **give it a star** and share it with others!
-
-Let’s keep **learning, practicing, and growing together** 💡
