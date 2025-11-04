@@ -12,8 +12,8 @@ package recursion.medium;
  * Output: true
  */
 public class WordSearch {
+    // *************** Approach: Backtracking ***************
     /**
-     * Approach: ******* Backtracking *******
      * In the main function,we iterate over the board and for each cell, we check if the current character matches
      * the first character of the word. If it does, we call the dfs function. If dfs returns true,  we return true
      * indicating that the word exists in the grid. If dfs returns false for all choices, we return false.
@@ -26,11 +26,40 @@ public class WordSearch {
      * Space Complexity: O(m * n)
      */
 
+    /**
+     * main function to check if the given word exists in the board.
+     * @return true if given word exist in the board, false otherwise
+     */
+    public boolean exist(char[][] board, String word) {
+        // row and column of the board
+        int m = board.length;
+        int n = board[0].length;
+
+        // visited array
+        boolean[][] vis = new boolean[m][n];
+
+        // Iterate over the board and when we find the first character of the word, that matches the current cell,
+        // we call dfs to check if the word exists in the board.
+        for (int i = 0; i < m; i ++) {
+            for (int j = 0; j < n; j ++) {
+                // first character of word matches the current cell
+                if (board[i][j] == word.charAt(0)) {
+                    // if dfs returns true, we return true, we found the word
+                    if(dfs(i, j, 0, word, board, vis))
+                        return true;
+                }
+            }
+        }
+        // word never found
+        return false;
+    }
+
     // helper function to check if the current cell is valid
     private boolean isValid(int m, int n, int row, int col) {
         return row >= 0 && row <= m-1 && col >= 0 && col <= n-1;
     }
 
+    // helper function to perform dfs
     private boolean dfs(int curRow, int curCol, int idx, String word, char[][] board, boolean[][] vis) {
         // row and column of the board
         int m = board.length;
@@ -59,8 +88,8 @@ public class WordSearch {
             int adjCol = curCol + delCol[i];
 
             // recursively call dfs, incrementing the index to explore the next
-            // character of the word
-            if (dfs(adjRow, adjCol, idx+1, word, board, vis))
+            // character of the word. idx is used to keep track of the matched word
+            if (dfs(adjRow, adjCol, idx + 1, word, board, vis))
                 return true;
         }
 
@@ -71,30 +100,7 @@ public class WordSearch {
         return false;
     }
 
-    public boolean exist(char[][] board, String word) {
-        // row and column of the board
-        int m = board.length;
-        int n = board[0].length;
-
-        // visited array
-        boolean[][] vis = new boolean[m][n];
-
-        // Iterate over the board and when we find the first character of the word, that matches the current cell,
-        // we call dfs to check if the word exists in the board.
-        for (int i = 0; i < m; i ++) {
-            for (int j = 0; j < n; j ++) {
-                // first character of word matches the current cell
-                if (board[i][j] == word.charAt(0)) {
-                    // if dfs returns true, we return true, we found the word
-                    if(dfs(i, j, 0, word, board, vis))
-                        return true;
-                }
-            }
-        }
-        // word never found
-        return false;
-    }
-
+    // main
     static void main() {
         var obj = new WordSearch();
 
