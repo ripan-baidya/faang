@@ -39,7 +39,9 @@ public class GenerateParenthesis {
         return res;
     }
 
+    // helper function to perform backtracking
     private void dfs(int cntOpen, int cntClose, int n, List<String> res, StringBuilder sb) {
+        // base case:
         if (cntOpen == n && cntClose == n) {
             res.add(sb.toString());
             return;
@@ -51,6 +53,7 @@ public class GenerateParenthesis {
             sb.deleteCharAt(sb.length()-1);
         }
 
+        // add close parenthesis
         if (cntClose < cntOpen) {
             sb.append(")");
             dfs(cntOpen, cntClose+1, n, res, sb);
